@@ -4,10 +4,11 @@ for d in /etc/duckdns-utils/domains/*.conf
 do 
 
 DOMAINS=$(basename "$d" .conf)
-LOCAL_IPv4=$(ip -4 -o addr show dev eth0 | awk '{print $4}' | cut -d/ -f1)
-LOCAL_IPv6=$(ip -6 -o addr show dev eth0 | awk '{print $4}' | cut -d/ -f1)
 
 . "$d"
+
+LOCAL_IPv4=$(ip -4 -o addr show dev $NIC | awk '{print $4}' | cut -d/ -f1)
+LOCAL_IPv6=$(ip -6 -o addr show dev $NIC | awk '{print $4}' | cut -d/ -f1)
 
 echo "performing duckdns-update for domain: $DOMAINS"
 
