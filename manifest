@@ -1,0 +1,9 @@
+/usr/share/doc/duckdns-utils/manifest
+/usr/share/doc/duckdns-utils/spec.jsp
+/etc/duckdns-utils/domains/*
+/usr/bin/duckdns-certbot-authenticator
+/usr/bin/duckdns-certbot-cleanup
+/usr/bin/duckdns-certbot-create
+/usr/bin/duckdns-update
+/lib/systemd/system/duckdns-update.timer
+/lib/systemd/system/duckdns-update.service

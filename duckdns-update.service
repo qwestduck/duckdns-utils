@@ -1,0 +1,7 @@
+[Unit]
+Description=Updates duckdns DNS entry
+Documentation=file:///usr/share/duckdns-utils/doc/spec.jsp
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c '/usr/bin/duckdns-update'
