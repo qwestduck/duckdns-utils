@@ -1,0 +1,10 @@
+URL="https://www.duckdns.org/update"
+DOMAINS=$(expr match "$CERTBOT_DOMAIN" '\(.*\)\.duckdns\.org')
+
+. "/etc/duckdns-utils/domains/${DOMAINS}.conf"
+
+TXT="$CERTBOT_VALIDATION"
+
+curl --get --data domains="$DOMAINS" --data token="$TOKEN" --data txt="$TXT" --data verbose=false --data clear=false "$URL"
+
+sleep 25

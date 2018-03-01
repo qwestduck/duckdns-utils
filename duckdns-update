@@ -1,0 +1,20 @@
+URL="https://www.duckdns.org/update"
+
+for d in /etc/duckdns-utils/domains/*.conf
+do 
+
+DOMAINS=$(basename "$d" .conf)
+LOCAL_IPv4=$(ip -4 -o addr show dev eth0 | awk '{print $4}' | cut -d/ -f1)
+LOCAL_IPv6=$(ip -6 -o addr show dev eth0 | awk '{print $4}' | cut -d/ -f1)
+
+. "$d"
+
+echo "performing duckdns-update for domain: $DOMAINS"
+
+## Update with auto-detected global address
+# curl -sS --get --data domains="$DOMAINS" --data token="$TOKEN" --data verbose=false --data clear=false "$URL"
+
+## Update with local address
+curl -sS --get --data domains="$DOMAINS" --data token="$TOKEN" --data ip="$LOCAL_IPv4" --data ipv6="$LOCAL_IPv6" --data verbose=false --data clear=false "$URL"
+
+done;

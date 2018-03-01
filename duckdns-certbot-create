@@ -1,0 +1,10 @@
+for d in /etc/duckdns-utils/domains/*.conf
+do
+
+DOMAINS=$(basename "$d" .conf)
+
+. "$d"
+
+certbot --authenticator manual --installer apache -d "${DOMAINS}.duckdns.org" --email "$EMAIL" --agree-tos --preferred-challenges dns --manual-auth-hook "/usr/bin/duckdns-certbot-authenticator" --manual-cleanup-hook "/usr/bin/duckdns-certbot-cleanup" --manual-public-ip-logging-ok --redirect
+
+done;
